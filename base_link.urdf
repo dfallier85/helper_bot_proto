@@ -1,0 +1,115 @@
+<?xml version="1.0"?>
+<robot name="BigMoves">
+    <!-- Set up materials *Special thanks to my kids for the artistic consultation*-->
+    <material name="blue">
+        <color rgba="0 0 1 1"/>
+    </material>    
+
+    <material name="natalie">
+        <color rgba="1.0 0.41 0.71 1"/>
+    </material>    
+
+    <material name="tubular_teal">
+        <color rgba="0 0.5 0.5 1"/>
+    </material>
+
+    <material name="green_meanie">
+        <color rgba="0.22 1 0.07 1"/>
+    </material>       
+    
+    <!-- Base Link -->
+    <link name="base_link">
+        <visual>
+            <geometry>
+                <box size="0.8 0.8 0.3"/>
+            </geometry>
+            <material name="natalie"/>
+        </visual>
+    </link>
+
+    <!-- First Link -->
+    <link name="face_piece">
+        <visual>
+            <geometry>
+                <sphere radius="0.14"/>
+            </geometry>
+            <material name="blue"/>
+        </visual>
+    </link>
+
+    <!-- Joint Connecting Base to Link Left -->
+    <joint name="joint_1" type="revolute">
+        <parent link="base_link"/>
+        <child link="face_piece"/>
+        <origin xyz=".16 0 0.14" rpy="0 0 0"/>
+        <axis xyz="0 0 1"/>
+         <limit effort="10.0" velocity="1.0" lower="-3.14" upper="3.14"/>
+    </joint>
+
+    <!-- Wheel Links -->
+    <link name="wheel_FR">
+        <visual>
+            <geometry>
+                <cylinder radius="0.1" length="0.1"/>
+            </geometry>
+            <material name="tubular_teal"/>
+        </visual>
+    </link>
+
+    <link name="wheel_FL">
+        <visual>    
+            <geometry>
+                <cylinder radius="0.1" length="0.1"/>
+            </geometry>
+            <material name="tubular_teal"/>
+        </visual>
+    </link>        
+        
+    <link name="wheel_RR">
+        <visual>
+            <geometry>
+                <cylinder radius="0.1" length="0.1"/>
+            </geometry>
+            <material name="green_meanie"/>
+        </visual>
+    </link>        
+
+    <link name="wheel_RL">
+        <visual>    
+            <geometry>
+                <cylinder radius="0.1" length="0.1"/>
+            </geometry>
+            <material name="green_meanie"/>
+        </visual>    
+    </link>
+
+    <!-- Joints Connecting Wheels to Base -->
+    <joint name="FR_wheel" type="continuous">
+        <parent link="base_link"/>
+        <child link="wheel_FR"/>
+        <origin xyz="0.29 -0.34 -0.1" rpy="1.5708 0 0"/>
+        <axis xyz="0 0 1"/>
+    </joint>
+
+    <joint name="FL_wheel" type="continuous">
+        <parent link="base_link"/>
+        <child link="wheel_FL"/>
+        <origin xyz="0.29 0.34 -0.1" rpy="1.5708 0 0"/>
+        <axis xyz="0 0 1"/>
+    </joint>
+    
+    <joint name="RR_wheel" type="continuous">
+        <parent link="base_link"/>
+        <child link="wheel_RR"/>
+        <origin xyz="-0.29 -0.34 -0.1" rpy="1.5708 0 0"/>
+        <axis xyz="0 0 1"/>
+    </joint>
+
+    <joint name="RL_wheel" type="continuous">
+        <parent link="base_link"/>
+        <child link="wheel_RL"/>
+        <origin xyz="-0.29 0.34 -0.1" rpy="1.5708 0 0"/>
+        <axis xyz="0 0 1"/>
+    </joint>
+
+</robot>
